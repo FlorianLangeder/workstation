@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  environment:
+    PATH: "/opt/node/bin:{{ ansible_env.PATH }}"
+  vars:
+    config_dir: "{{ playbook_dir }}/conf"
+  tasks:
+    - name: get local user
+      shell: whoami
+      register: ansible_user
+    - include: tasks/i3-gaps/i3-gaps.yml
+#    - include: tasks/polybar.yml
+#    - include: tasks/rofi.yml
