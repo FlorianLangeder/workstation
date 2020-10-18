@@ -1,0 +1,31 @@
+---
+
+- name: include vars
+  include_vars:
+    file: "./handlers/vars/main.yml"
+
+- name: ensure git parent path exists
+  file:
+    path: "{{ i3_gaps_git_path | dirname }}"
+    state: directory
+    mode: 0755
+
+- name: ensure i3-gaps is cloned
+  git:
+    repo: "{{ i3_gaps_git_url }}"
+    dest: "{{ i3_gaps_git_path }}"
+    version: "master"
+    clone: True
+    force: True
+    recursive: True
+    update: True
+    depth: 1
+  notify:
+    - install i3-wm
+    - install i3-gaps
+
+- name: copy i3 config
+  copy:
+    src: "{{ config_dir }}/i3config"
+    dest: "/etc/i3/config"
+    remote_src: yes

@@ -1,0 +1,11 @@
+---
+
+- name: install i3-wm
+  apt:
+    name: i3-wm
+    state: latest
+
+- name: install i3-gaps
+  command: echo y | ./i3-gaps-deb
+  args:
+    chdir: "{{ i3_gaps_git_path }}"
