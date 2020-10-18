@@ -1,0 +1,5 @@
+- name: copy Xresources config
+  copy:
+    src: "{{ config_dir }}/Xresources"
+    dest: "~/.Xresources"
+    remote_src: yes
