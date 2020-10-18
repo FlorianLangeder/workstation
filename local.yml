@@ -2,5 +2,5 @@
 - hosts: localhost
   vars:
     config_dir: "{{ playbook_dir }}/conf"
-  roles: [i3-gaps]
+  roles: [i3-gaps, rofi]
   become: yes

@@ -1,0 +1,12 @@
+---
+
+- name: install rofi
+  apt:
+    name: rofi
+    state: latest
+
+- name: copy rofi config
+  copy:
+    src: "{{ config_dir }}/roficonfig"
+    dest: "/etc/rofi/config"
+    remote_src: yes
